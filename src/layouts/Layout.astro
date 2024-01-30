@@ -18,8 +18,8 @@ import Nav from '../components/Nav.astro';
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
+	<Nav />
 	<body>
-		<Nav />
 		<slot />
 	</body>
 </html>
@@ -37,7 +37,7 @@ import Nav from '../components/Nav.astro';
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background: #ffffff;
 		background-size: 224px;
 	}
 	code {

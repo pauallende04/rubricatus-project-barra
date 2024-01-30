@@ -1,7 +1,34 @@
 ---
----
-<script is:inline src="/scripts/nav.js"></script>
 
-<body id="body">
-    <p id="hi">Hi</p>
-</body>
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline src="/scripts/nav.js"></script>
+  </head>
+  <nav id="nav" class="">
+    <li><a href="">mapa</a></li>
+    <li><a href="">pendientes</a></li>
+    <li><a href="">completados</a></li>
+    <li><a href="">inventario</a></li>
+  </nav>
+  <style>
+    nav > li {
+      display: inline-block;
+      padding: 10px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      margin: 5px;
+      cursor: pointer;
+      border: 0.12em solid #000000;
+    }
+    a {
+      text-decoration: none;
+      color: #000000;
+    }
+  </style>
+
+</html>
