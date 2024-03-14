@@ -1,133 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Completados">
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	<!-- <script is:inline src="/scripts/index-redirect.js"></script> -->
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Index redirecting...</title>
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Gestión de Pedidos</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    .resumen {
+        background-color: #c1e6c1;
+        padding: 10px;
+        text-align: center;
+    }
+    .imprimir-btn {
+        cursor: pointer;
+    }
+    .mesa-link {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+    }
+    .factura-container {
+        margin-top: 20px;
+    }
+    .factura {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+</style>
+</head>
+<body onload="mostrarFactura(1)">
+<div class="container py-4">
+    <div class="card mb-4">
+        <div class="card-header">Mapa</div>
+        <div class="card-body">
+            <p class="card-text"><a class="mesa-link" onclick="mostrarFactura(1)">Mesa 1 (18:40)</a> 20,00€</p>
+            <p class="card-text"><a class="mesa-link" onclick="mostrarFactura(2)">Mesa 2 (18:21)</a> 23,37€</p>
+            <p class="card-text"><a class="mesa-link" onclick="mostrarFactura(4)">Mesa 4 (17:38)</a> 99,99€</p>
+        </div>
+    </div>
+    <!-- <div class="card">
+        <div class="card-header">Completados</div>
+        <div class="card-body">
+            <p class="card-text"><strong>Mesa 4 (17:38)</strong> 99,99€</p>
+            <ul>
+                <li>Café 1 - 7,99€</li>
+                <li>Café 2 - 5,88€</li>
+                <li>Macarrones - 4,55€</li>
+                <li>Bocadillo 1 - 3,88€</li>
+                <li>Bocadillo 2 - 3,67€</li>
+            </ul>
+            <div class="resumen">
+                Resumen del día: 99,99€
+            </div>
+            <button class="btn btn-primary imprimir-btn" onclick="imprimirFactura()">Imprimir</button>
+        </div>
+    </div> -->
+
+    <!-- Contenedor de factura -->
+    <div class="factura-container">
+        <div id="factura" class="factura" style="display: block;">
+            <h4>Factura</h4>
+            <h4>Mesa 1</h4>
+            <div id="detallePedido"><p>Hamburguesa: 10.00€</p><p>Refresco: 10.00€</p></div>
+            <p>Total: <span id="totalPrecio">20.00€</span></p>
+            <button class="btn btn-primary imprimir-btn" onclick="imprimirFactura()">Imprimir</button>
+        </div>
+    </div>
 
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Index redirecting...</title>
-        <!-- Bootstrap CSS -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <style>
-            .resumen {
-                background-color: #c1e6c1;
-                padding: 10px;
-                text-align: center;
-            }
-            .imprimir-btn {
-                cursor: pointer;
-            }
-            .mesa-link {
-                cursor: pointer;
-                color: blue;
-                text-decoration: underline;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container py-4">
-            <div class="card mb-4">
-                <div class="card-header">Mapa</div>
-                <div class="card-body">
-                    <p class="card-text"><a class="mesa-link" data-toggle="modal" data-target="#mesa1">Mesa 1 (18:40)</a> 30,01€</p>
-                    <p class="card-text"><a class="mesa-link" data-toggle="modal" data-target="#mesa2">Mesa 2 (18:21)</a> 23,37€</p>
-                    <p class="card-text"><a class="mesa-link" data-toggle="modal" data-target="#mesa4">Mesa 4 (17:38)</a> 99,99€</p> <!-- Agregado -->
-                    <!-- Otras mesas aquí -->
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">Completados</div>
-                <div class="card-body">
-                    <p class="card-text"><strong>Mesa 4 (17:38)</strong> 99,99€</p>
-                    <ul>
-                        <li>Café 1 - 7,99€</li>
-                        <li>Café 2 - 5,88€</li>
-                        <li>Macarrones - 4,55€</li>
-                        <li>Bocadillo 1 - 3,88€</li>
-                        <li>Bocadillo 2 - 3,67€</li>
-                    </ul>
-                    <div class="resumen">
-                        Resumen del día: 99,99€
-                    </div>
-                    <button class="btn btn-primary imprimir-btn" data-toggle="modal" data-target="#mesa4">Imprimir</button>
-                </div>
-            </div>
-        </div>
-        
-    
-        <!-- Modales -->
-        <div class="modal fade" id="mesa1" tabindex="-1" role="dialog" aria-labelledby="mesa1Label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mesa1Label">Factura Mesa 1</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Contenido de la factura de la Mesa 1 -->
-                        <p>Contenido de la factura de la Mesa 1...</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div class="modal fade" id="mesa2" tabindex="-1" role="dialog" aria-labelledby="mesa2Label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mesa2Label">Factura Mesa 2</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Contenido de la factura de la Mesa 2 -->
-                        <p>Contenido de la factura de la Mesa 2...</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div class="modal fade" id="mesa4" tabindex="-1" role="dialog" aria-labelledby="mesa4Label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mesa4Label">Factura Mesa 4</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Contenido de la factura de la Mesa 4 -->
-                        <p>Contenido de la factura de la Mesa 4...</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Bootstrap JS and dependencies -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
-    </html>
-    
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Datos de ejemplo (pueden ser reemplazados con datos reales de un backend)
+    const pedidos = [
+        { mesa: 1, hora: "10:30", precioTotal: 25.50, items: ["Hamburguesa", "Refresco"] },
+        { mesa: 2, hora: "11:15", precioTotal: 18.75, items: ["Pizza", "Ensalada", "Agua"] }
+    ];
+
+    // Función para mostrar la factura de un pedido específico
+    function mostrarFactura(mesa) {
+        const facturaDiv = document.getElementById("factura");
+        const detallePedidoDiv = document.getElementById("detallePedido");
+        const totalPrecioSpan = document.getElementById("totalPrecio");
+
+        // Encontrar el pedido correspondiente a la mesa seleccionada
+        const pedido = pedidos.find(pedido => pedido.mesa === mesa);
+        if (pedido) {
+            // Construir el detalle del pedido
+            let detallePedidoHTML = "";
+            pedido.items.forEach(item => {
+                detallePedidoHTML += `<p>${item}: $10.00</p>`; // Precio de ejemplo
+            });
+            detallePedidoDiv.innerHTML = detallePedidoHTML;
+
+            // Mostrar el precio total
+            totalPrecioSpan.textContent = pedido.precioTotal.toFixed(2);
+
+            // Mostrar la factura
+            facturaDiv.style.display = "block";
+        }
+    }
+
+    // Función para imprimir la factura
+    function imprimirFactura() {
+        window.print();
+    }
+
+    // Función para mostrar el resumen del día
+    function mostrarResumenDia() {
+        const resumenDiaDiv = document.getElementById("resumenDia");
+        // Lógica para calcular el resumen del día (ejemplo)
+        const totalVentas = pedidos.reduce((total, pedido) => total + pedido.precioTotal, 0);
+        resumenDiaDiv.innerHTML = `<p>Total Ventas: ${totalVentas.toFixed(2)}</p>`;
+    }
+
+    // Llamar a las funciones para mostrar los datos iniciales
+    mostrarResumenDia();
+</script>
+</body>
+</html>
