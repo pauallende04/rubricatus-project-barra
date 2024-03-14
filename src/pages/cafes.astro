@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IconosInventarioContainer from '../components/IconosInventarioContainer.astro';
+import Inventario from '../components/Inventario.astro';
+import InventarioCafes from '../components/InventarioCafes.astro';
+import datosCafes from '../data/datosCafes';
+---
+
+<Layout title="Bebidas">
+	<IconosInventarioContainer />
+	<h2>Cafes</h2>
+	<Inventario>
+		{
+			datosCafes.map((item) => <InventarioCafes {...item}/>)
+		}
+	</Inventario>
+</Layout>
+
+<style>
+    h2 {
+      text-align: center;
+      margin: 100px auto;
+    }
+  </style>

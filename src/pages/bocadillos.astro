@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IconosInventarioContainer from '../components/IconosInventarioContainer.astro';
+import Inventario from '../components/Inventario.astro';
+import InventarioBocadillos from '../components/InventarioBocadillos.astro';
+import datosBocadilloss from '../data/datosBocadillos';
+import InventarioPastas from '../components/InventarioPastas.astro';
+---
+
+<Layout title="Bocadillos">
+	<IconosInventarioContainer />
+	<h2>Bocadillos</h2>
+	<Inventario>
+		{
+			datosBocadilloss.map((item) => <InventarioBocadillos {...item}/>)
+		}
+	</Inventario>
+</Layout>
+<style>
+    h2 {
+      text-align: center;
+      margin: 100px auto;
+    }
+  </style>

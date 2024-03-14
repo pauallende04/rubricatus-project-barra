@@ -1,0 +1,21 @@
+---
+import type { MenuItem} from "../types/types";
+interface Props extends MenuItem {}
+
+const {title, url} = Astro.props;
+---
+
+    <a href={url}>{title}</a>
+
+<style>
+    a{
+        color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    }
+    a:hover{
+        color: orange;
+        transform: scale(1.15);
+    }
+</style>
