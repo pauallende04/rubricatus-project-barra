@@ -1,4 +1,4 @@
-import type { BocadillosInv} from "../types/types";
+import type { BocadillosInv } from "../types/types";
 
 const bocadillosInv:BocadillosInv[] = [
     {
