@@ -5,7 +5,7 @@ import Camareros from '../components/Camareros.astro';
 ---
 
 <Layout title="Mapa">
-	<main>
+	<main class="left">
 		<ul role="list" class="link-card-grid">
 			<Mesa 
 				color='yellow'
@@ -25,15 +25,15 @@ import Camareros from '../components/Camareros.astro';
 			/>
 		</ul>
 		
-		
 	</main>
-
-	<Camareros />
+	<main class="right">
+		<Camareros />
+	</main>
 
 </Layout>
 
 <style>
-	main {
+	.left {
 		margin: auto;
 		padding: 1rem;
 		width: 800px;
@@ -45,6 +45,21 @@ import Camareros from '../components/Camareros.astro';
   		top: 50%;
   		left: 5%;
 		right: 30;
+  		transform: translateY(-50%);
+	}
+
+	.right {
+		margin: auto;
+		padding: 1rem;
+		width: 600px;
+		max-width: calc(100% - 2rem);
+		color: rgb(255, 255, 255);
+		font-size: 20px;
+		line-height: 1.6;
+		position: fixed;
+  		top: 50%;
+  		right: 5%;
+		left: 30;
   		transform: translateY(-50%);
 	}
 	
